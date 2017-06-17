@@ -21,6 +21,8 @@ import com.gnnsnowszerro.psngiftcardsgenerator.models.Coupon;
 
 import java.util.List;
 
+import static com.gnnsnowszerro.psngiftcardsgenerator.fragments.CouponFragment.COUPON_POSITION;
+
 
 public class CouponsListFragment extends Fragment implements ShowCouponListener {
 
@@ -54,7 +56,7 @@ public class CouponsListFragment extends Fragment implements ShowCouponListener 
     @Override
     public void showCoupon(int position) {
         Intent intent = new Intent(getContext(), CouponActivity.class);
-        intent.putExtra(CouponActivity.COUPON_POSITION, position);
+        intent.putExtra(COUPON_POSITION, position);
         getContext().startActivity(intent);
     }
 
