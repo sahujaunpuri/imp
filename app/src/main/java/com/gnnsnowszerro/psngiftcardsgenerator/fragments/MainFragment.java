@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
 import com.gnnsnowszerro.psngiftcardsgenerator.custom.CustomToolbar;
+import com.gnnsnowszerro.psngiftcardsgenerator.helpers.PrefenceHelper;
 
 
 public class MainFragment extends Fragment {
@@ -50,7 +51,7 @@ public class MainFragment extends Fragment {
 
         toolbar.setNavigationIcon(R.mipmap.ic_launcher);
 
-        toolbar.setCoinsText("12");
+        toolbar.setCoinsText(String.valueOf(PrefenceHelper.getInstance(getContext()).loadCoins()));
 
         ((AppCompatActivity)getContext()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("sadnjkdsa");

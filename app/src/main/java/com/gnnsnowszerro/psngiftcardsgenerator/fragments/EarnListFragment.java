@@ -1,7 +1,6 @@
 package com.gnnsnowszerro.psngiftcardsgenerator.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,16 +12,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
-import com.gnnsnowszerro.psngiftcardsgenerator.activitys.AdvActivity;
+import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Adcolony;
+import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Advertising;
+import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Adxmi;
+import com.gnnsnowszerro.psngiftcardsgenerator.advertising.OfferToro;
 import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.EarnCoinsListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager;
 import com.gnnsnowszerro.psngiftcardsgenerator.models.EarnItem;
 
 import java.util.List;
 
+import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.ADCOLONY;
+import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.ADXMI;
+import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.NATIVEX;
+import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.OFFER_TORO;
+import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.RATE_US;
+
 
 public class EarnListFragment extends Fragment implements EarnCoinsListener {
 
+    private Advertising advertising;
 
     public static EarnListFragment newInstance() {
         EarnListFragment fragment = new EarnListFragment();
@@ -52,11 +61,27 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener {
 
     @Override
     public void earnCoins(int type) {
-        if (type != DataManager.RATE_US) {
-            Intent intent = new Intent(getContext(), AdvActivity.class);
-            intent.putExtra(AdvActivity.ADV_TYPE, type);
-            getContext().startActivity(intent);
+        switch (type) {
+            case OFFER_TORO:
+                advertising = new OfferToro(getContext(), getActivity());
+                break;
+            case NATIVEX:
+                break;
+            case ADXMI:
+                advertising = new Adxmi(getContext());
+                break;
+            case ADCOLONY:
+                advertising = new Adcolony(getContext(), getActivity());
+                break;
+            case RATE_US:
+                advertising = null;
+                break;
         }
+        if (advertising != null) {
+            advertising.initAdv();
+            advertising.showAdv();
+        }
+
     }
 
     public class EarnListRecyclerViewAdapter extends RecyclerView.Adapter<EarnListRecyclerViewAdapter.ViewHolder> {

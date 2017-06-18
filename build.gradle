@@ -16,6 +16,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url "http://dl.appnext.com/" }
+        maven { url  "https://adcolony.bintray.com/AdColony"     }
     }
 }
 

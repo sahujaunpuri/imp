@@ -29,13 +29,12 @@
         </activity>
         <activity
             android:name=".activitys.MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activitys.CouponActivity"
             android:parentActivityName=".activitys.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activitys.AdvActivity"></activity>
+
 
         <activity
             android:name="net.adxmi.android.AdBrowser"
@@ -50,6 +49,14 @@
             android:name="net.adxmi.android.ExpService"
             android:exported="false" >
         </service>
+
+        <activity android:name="com.adcolony.sdk.AdColonyInterstitialActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"/>
+
+        <activity android:name="com.adcolony.sdk.AdColonyAdViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"/>
     </application>
 
 
