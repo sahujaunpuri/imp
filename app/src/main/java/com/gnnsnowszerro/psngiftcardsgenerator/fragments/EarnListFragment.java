@@ -1,6 +1,7 @@
 package com.gnnsnowszerro.psngiftcardsgenerator.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
+import com.gnnsnowszerro.psngiftcardsgenerator.activitys.AdvActivity;
 import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.EarnCoinsListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager;
 import com.gnnsnowszerro.psngiftcardsgenerator.models.EarnItem;
@@ -49,8 +51,12 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener {
 
 
     @Override
-    public void earnCoins(int position) {
-
+    public void earnCoins(int type) {
+        if (type != DataManager.RATE_US) {
+            Intent intent = new Intent(getContext(), AdvActivity.class);
+            intent.putExtra(AdvActivity.ADV_TYPE, type);
+            getContext().startActivity(intent);
+        }
     }
 
     public class EarnListRecyclerViewAdapter extends RecyclerView.Adapter<EarnListRecyclerViewAdapter.ViewHolder> {

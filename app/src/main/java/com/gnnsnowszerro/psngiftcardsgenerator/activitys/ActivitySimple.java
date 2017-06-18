@@ -28,7 +28,7 @@ public abstract class ActivitySimple extends AppCompatActivity {
         }
 
         appNext = new AppNext(this, findViewById(R.id.appnext_container));
-        appNext.initAdv(this);
+        appNext.initAdv();
 
     }
 

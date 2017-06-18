@@ -11,6 +11,14 @@ import java.util.List;
  * Created by mykola on 17.06.17.
  */
 public class DataManager {
+
+
+    public static final int OFFER_TORO = 0;
+    public static final int NATIVEX = 1;
+    public static final int ADXMI = 2;
+    public static final int ADCOLONY = 3;
+    public static final int RATE_US = 4;
+
     private static DataManager ourInstance = new DataManager();
     private List<Coupon> coupons;
     private List<EarnItem> earnItems;
@@ -70,10 +78,10 @@ public class DataManager {
         addCoupon(new Coupon("25$ PS Gift Card", R.drawable.icon, 9900));
         addCoupon(new Coupon("10$ PS Gift Card", R.drawable.icon, 4000));
 
-        addEarn(new EarnItem("Quick offers",R.drawable.icon));
-        addEarn(new EarnItem("Pro tasks",R.drawable.icon));
-        addEarn(new EarnItem("Daily offers",R.drawable.icon));
-        addEarn(new EarnItem("Watch Video",R.drawable.icon));
-        addEarn(new EarnItem("Rate us",R.drawable.icon));
+        addEarn(new EarnItem(OFFER_TORO,"Quick offers",R.drawable.icon));
+        addEarn(new EarnItem(NATIVEX,"Pro tasks",R.drawable.icon));
+        addEarn(new EarnItem(ADXMI,"Daily offers",R.drawable.icon));
+        addEarn(new EarnItem(ADCOLONY,"Watch Video",R.drawable.icon));
+        addEarn(new EarnItem(RATE_US,"Rate us",R.drawable.icon));
     }
 }

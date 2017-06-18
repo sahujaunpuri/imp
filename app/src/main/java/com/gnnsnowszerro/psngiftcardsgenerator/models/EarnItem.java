@@ -5,6 +5,9 @@ package com.gnnsnowszerro.psngiftcardsgenerator.models;
  */
 
 public class EarnItem {
+
+
+    private int id;
     private String title;
     private int icon;
 
@@ -16,9 +19,15 @@ public class EarnItem {
         return icon;
     }
 
-    public EarnItem(String title, int icon) {
+    public int getId() {
+        return id;
+    }
 
+    public EarnItem(int id, String title, int icon) {
+
+        this.id = id;
         this.title = title;
         this.icon = icon;
     }
+
 }

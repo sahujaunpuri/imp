@@ -21,7 +21,7 @@ import java.util.Random;
  * Created by mykola on 18.06.17.
  */
 
-public class AppNext implements Advertising {
+public class AppNext extends Advertising {
     private Context context;
     private AppnextAPI api;
     private AppnextAd ad;
@@ -29,13 +29,14 @@ public class AppNext implements Advertising {
     public static final String PLACEMENT_ID = "71e1876b-4594-4065-8d8a-9739c2e519de";
 
     public AppNext(Context context, View view) {
+        super(context);
         this.context = context;
         this.view = view;
     }
 
 
     @Override
-    public void initAdv(final Context context) {
+    public void initAdv() {
         Appnext.init(context);
 
         api = new AppnextAPI(context, PLACEMENT_ID);
@@ -84,5 +85,10 @@ public class AppNext implements Advertising {
     @Override
     public void finalizeAdv() {
         api.finish();
+    }
+
+    @Override
+    public void showAdv() {
+
     }
 }
