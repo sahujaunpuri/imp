@@ -83,7 +83,7 @@ public class CouponsListFragment extends Fragment implements ShowCouponListener 
             holder.mCoupon = mValues.get(position);
 
             holder.mDesc.setText(holder.mCoupon.getDesc());
-            holder.mPrice.setText(holder.mCoupon.getPrice() + "coins");
+            holder.mPrice.setText(getString(R.string.coins,holder.mCoupon.getPrice()));
             holder.mLogo.setImageResource(holder.mCoupon.getLogo());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {

@@ -33,7 +33,7 @@ public class Alert extends AlertSimple {
 
     @Override
     public void setDialogView() {
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sorry, null);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.alert, null);
 
 
         title = (TextView) v.findViewById(R.id.title);
@@ -64,9 +64,9 @@ public class Alert extends AlertSimple {
 
         dialog.setContentView(v);
 
-        Window window = dialog.getWindow();
+        /*Window window = dialog.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
+*/
     }
 
 }

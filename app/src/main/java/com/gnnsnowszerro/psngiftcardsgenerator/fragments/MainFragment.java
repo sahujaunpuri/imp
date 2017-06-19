@@ -13,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
+import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.custom.CustomToolbar;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.PrefenceHelper;
 
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements UpdateListener {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -41,29 +42,32 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         toolbar = (CustomToolbar) view.findViewById(R.id.toolbar);
 
-        toolbar.setLogo(R.drawable.icon);
-
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        toolbar.setLogo(R.mipmap.ic_launcher);
 
         toolbar.setCoinsText(String.valueOf(PrefenceHelper.getInstance(getContext()).loadCoins()));
 
-        ((AppCompatActivity)getContext()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("sadnjkdsa");
+        ((AppCompatActivity) getContext()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getContext()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(((AppCompatActivity)getContext()).getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(((AppCompatActivity) getContext()).getSupportFragmentManager());
 
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
         return view;
+    }
+
+    @Override
+    public void update() {
+        toolbar.setCoinsText(String.valueOf(PrefenceHelper.getInstance(getContext()).loadCoins()));
     }
 
     public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
@@ -98,11 +102,11 @@ public class MainFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return getString(R.string.choose_coupon);
                 case 1:
-                    return "SECTION 2";
+                    return getString(R.string.earn_coins);
                 case 2:
-                    return "SECTION 3";
+                    return getString(R.string.instructions);
             }
             return null;
         }

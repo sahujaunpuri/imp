@@ -15,8 +15,10 @@ import com.gnnsnowszerro.psngiftcardsgenerator.R;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Adcolony;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Advertising;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Adxmi;
+import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Nativex;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.OfferToro;
 import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.EarnCoinsListener;
+import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager;
 import com.gnnsnowszerro.psngiftcardsgenerator.models.EarnItem;
 
@@ -29,9 +31,10 @@ import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.OFFER_
 import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.RATE_US;
 
 
-public class EarnListFragment extends Fragment implements EarnCoinsListener {
+public class EarnListFragment extends Fragment implements EarnCoinsListener, UpdateListener {
 
     private Advertising advertising;
+
 
     public static EarnListFragment newInstance() {
         EarnListFragment fragment = new EarnListFragment();
@@ -63,15 +66,16 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener {
     public void earnCoins(int type) {
         switch (type) {
             case OFFER_TORO:
-                advertising = new OfferToro(getContext(), getActivity());
+                advertising = new OfferToro(getContext(), this,getActivity());
                 break;
             case NATIVEX:
+                advertising = new Nativex(getContext(), this, getActivity());
                 break;
             case ADXMI:
-                advertising = new Adxmi(getContext());
+                advertising = new Adxmi(getContext(), this);
                 break;
             case ADCOLONY:
-                advertising = new Adcolony(getContext(), getActivity());
+                advertising = new Adcolony(getContext(), this, getActivity());
                 break;
             case RATE_US:
                 advertising = null;
@@ -82,7 +86,16 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener {
             advertising.showAdv();
         }
 
+
     }
+
+    @Override
+    public void update() {
+        if (getParentFragment() != null && getParentFragment() instanceof UpdateListener) {
+            ((UpdateListener) getParentFragment()).update();
+        }
+    }
+
 
     public class EarnListRecyclerViewAdapter extends RecyclerView.Adapter<EarnListRecyclerViewAdapter.ViewHolder> {
 

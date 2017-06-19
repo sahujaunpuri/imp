@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content">
 
     <TextView
@@ -9,22 +8,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
- />
+        android:textSize="18sp" />
 
     <ImageView
+        android:padding="3dp"
         android:id="@+id/coins_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/dolar" />
 
     <TextView
+
+        android:textSize="20sp"
         android:id="@+id/coins_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/coins_picture"
-        android:text="coins_text" />
+        android:textColor="@color/gold" />
 
 </RelativeLayout>

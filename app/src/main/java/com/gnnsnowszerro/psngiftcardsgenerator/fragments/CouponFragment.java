@@ -18,6 +18,8 @@ import com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.PrefenceHelper;
 import com.gnnsnowszerro.psngiftcardsgenerator.models.Coupon;
 
+import java.util.HashMap;
+
 
 public class CouponFragment extends Fragment implements View.OnClickListener {
 
@@ -35,6 +37,8 @@ public class CouponFragment extends Fragment implements View.OnClickListener {
     private int coins;
     private CustomToolbar toolbar;
 
+    private HashMap<String,String> messages;
+
 
     public static CouponFragment newInstance(int position) {
         CouponFragment fragment = new CouponFragment();
@@ -46,11 +50,6 @@ public class CouponFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coupon, container, false);
@@ -59,15 +58,12 @@ public class CouponFragment extends Fragment implements View.OnClickListener {
 
         toolbar = (CustomToolbar) view.findViewById(R.id.toolbar);
 
-        toolbar.setLogo(R.drawable.icon);
-
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        toolbar.setNavigationIcon(R.drawable.back);
 
         toolbar.setCoinsText(String.valueOf(coins));
 
         ((AppCompatActivity)getContext()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("REDEEM");
-
+        ((AppCompatActivity)getContext()).getSupportActionBar().setTitle(R.string.redeem);
 
         mDesc = (TextView) view.findViewById(R.id.desc);
         mPrice = (TextView) view.findViewById(R.id.price);
@@ -75,11 +71,14 @@ public class CouponFragment extends Fragment implements View.OnClickListener {
 
         email = (EditText) view.findViewById(R.id.email);
 
+        view.findViewById(R.id.generate).setOnClickListener(this);
+        view.findViewById(R.id.redeem).setOnClickListener(this);
+
         if (getArguments() != null) {
             int position = getArguments().getInt(COUPON_POSITION, 0);
             coupon = DataManager.getInstance().getCoupon(position);
             mDesc.setText(coupon.getDesc());
-            mPrice.setText(coupon.getPrice() + " coins");
+            mPrice.setText(getString(R.string.coins,coupon.getPrice()));
             mLogo.setImageResource(coupon.getLogo());
         }
         return view;
@@ -107,7 +106,7 @@ public class CouponFragment extends Fragment implements View.OnClickListener {
                 showAlert("Excellent", "You will get your code in 72 hours", false);
             }
         } else {
-            showAlert("Sorry", "ou don’t have enough coins", true);
+            showAlert("Sorry", "You don’t have enough coins", true);
         }
     }
 

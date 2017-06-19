@@ -53,7 +53,7 @@ public class InstructionsListFragment extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.coupon_item, parent, false);
+                    .inflate(R.layout.inctruction_item, parent, false);
             return new ViewHolder(view);
         }
 
@@ -73,7 +73,7 @@ public class InstructionsListFragment extends Fragment {
 
             public ViewHolder(View view) {
                 super(view);
-                mDesc = (TextView) view.findViewById(R.id.desc);
+                mDesc = (TextView) view.findViewById(R.id.instruction_text);
             }
 
         }

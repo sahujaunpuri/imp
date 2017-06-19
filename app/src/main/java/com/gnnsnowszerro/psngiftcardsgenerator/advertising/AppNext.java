@@ -11,6 +11,7 @@ import com.appnext.appnextsdk.API.AppnextAd;
 import com.appnext.appnextsdk.API.AppnextAdRequest;
 import com.appnext.base.Appnext;
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
+import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,8 +29,8 @@ public class AppNext extends Advertising {
     private View view;
     public static final String PLACEMENT_ID = "71e1876b-4594-4065-8d8a-9739c2e519de";
 
-    public AppNext(Context context, View view) {
-        super(context);
+    public AppNext(Context context, UpdateListener updateListener, View view) {
+        super(context,updateListener);
         this.context = context;
         this.view = view;
     }

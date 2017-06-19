@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.offertoro.sdk.OTOfferWallSettings;
 import com.offertoro.sdk.interfaces.OfferWallListener;
 import com.offertoro.sdk.sdk.OffersInit;
@@ -27,8 +28,8 @@ public class OfferToro extends Advertising {
 
     private OffersInit offersInit;
 
-    public OfferToro(Context context, Activity activity) {
-        super(context);
+    public OfferToro(Context context, UpdateListener updateListener,Activity activity) {
+        super(context,updateListener);
         this.activity = activity;
 
     }

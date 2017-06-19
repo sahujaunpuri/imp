@@ -2,6 +2,7 @@ package com.gnnsnowszerro.psngiftcardsgenerator.advertising;
 
 import android.content.Context;
 
+import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.PrefenceHelper;
 
 /**
@@ -10,6 +11,8 @@ import com.gnnsnowszerro.psngiftcardsgenerator.helpers.PrefenceHelper;
 
 public abstract class Advertising {
     private PrefenceHelper helper;
+    protected Context context;
+    protected UpdateListener updateListener;
 
     public abstract void initAdv();
 
@@ -17,7 +20,9 @@ public abstract class Advertising {
 
     public abstract void showAdv();
 
-    public Advertising(Context context){
+    public Advertising(Context context,UpdateListener updateListener){
+        this.context = context;
+        this.updateListener = updateListener;
         helper = PrefenceHelper.getInstance(context);
     }
 

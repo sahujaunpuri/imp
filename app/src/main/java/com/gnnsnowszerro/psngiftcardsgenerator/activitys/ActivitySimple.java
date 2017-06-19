@@ -27,7 +27,7 @@ public abstract class ActivitySimple extends AppCompatActivity {
                     .commit();
         }
 
-        appNext = new AppNext(this, findViewById(R.id.appnext_container));
+        appNext = new AppNext(this, null, findViewById(R.id.appnext_container));
         appNext.initAdv();
 
     }

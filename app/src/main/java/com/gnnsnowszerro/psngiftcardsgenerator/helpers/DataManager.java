@@ -69,19 +69,19 @@ public class DataManager {
     }
 
     private void init() {
-        addCoupon(new Coupon("50%", R.drawable.icon, 28000));
-        addCoupon(new Coupon("20%", R.drawable.icon, 11500));
-        addCoupon(new Coupon("10%", R.drawable.icon, 6000));
-        addCoupon(new Coupon("200$ PS Gift Card", R.drawable.icon, 75000));
-        addCoupon(new Coupon("100$ PS Gift Card", R.drawable.icon, 38000));
-        addCoupon(new Coupon("50$ PS Gift Card", R.drawable.icon, 19500));
-        addCoupon(new Coupon("25$ PS Gift Card", R.drawable.icon, 9900));
-        addCoupon(new Coupon("10$ PS Gift Card", R.drawable.icon, 4000));
+        addCoupon(new Coupon("50%", R.drawable.discont, 28000));
+        addCoupon(new Coupon("20%", R.drawable.discont, 11500));
+        addCoupon(new Coupon("10%", R.drawable.discont, 6000));
+        addCoupon(new Coupon("200$ PS Gift Card", R.drawable.gift_card, 75000));
+        addCoupon(new Coupon("100$ PS Gift Card", R.drawable.gift_card, 38000));
+        addCoupon(new Coupon("50$ PS Gift Card", R.drawable.gift_card, 19500));
+        addCoupon(new Coupon("25$ PS Gift Card", R.drawable.gift_card, 9900));
+        addCoupon(new Coupon("10$ PS Gift Card", R.drawable.gift_card, 4000));
 
-        addEarn(new EarnItem(OFFER_TORO,"Quick offers",R.drawable.icon));
-        addEarn(new EarnItem(NATIVEX,"Pro tasks",R.drawable.icon));
-        addEarn(new EarnItem(ADXMI,"Daily offers",R.drawable.icon));
-        addEarn(new EarnItem(ADCOLONY,"Watch Video",R.drawable.icon));
-        addEarn(new EarnItem(RATE_US,"Rate us",R.drawable.icon));
+        addEarn(new EarnItem(OFFER_TORO,"Quick offers",R.drawable.quick));
+        addEarn(new EarnItem(NATIVEX,"Pro tasks",R.drawable.pro));
+        addEarn(new EarnItem(ADXMI,"Daily offers",R.drawable.daily));
+        addEarn(new EarnItem(ADCOLONY,"Watch Video",R.drawable.video));
+        addEarn(new EarnItem(RATE_US,"Rate us",R.drawable.rate));
     }
 }

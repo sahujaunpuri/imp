@@ -8,6 +8,7 @@ import com.adcolony.sdk.AdColony;
 import com.adcolony.sdk.AdColonyInterstitial;
 import com.adcolony.sdk.AdColonyInterstitialListener;
 import com.adcolony.sdk.AdColonyZone;
+import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 
 /**
  * Created by mykola on 18.06.17.
@@ -20,8 +21,8 @@ public class Adcolony extends Advertising {
     public static final String ZONE_ID = "vzac61b40e83e8436c9e";
     private Activity activity;
 
-    public Adcolony(Context context, Activity activity) {
-        super(context);
+    public Adcolony(Context context, UpdateListener updateListener, Activity activity) {
+        super(context, updateListener);
         this.activity = activity;
     }
 
@@ -43,6 +44,8 @@ public class Adcolony extends Advertising {
             public void onClosed(AdColonyInterstitial ad) {
                 super.onClosed(ad);
                 addCoins(10);
+                if (updateListener != null)
+                    updateListener.update();
                 Log.d(TAG, "onClosed");
             }
 
@@ -73,13 +76,13 @@ public class Adcolony extends Advertising {
             @Override
             public void onLeftApplication(AdColonyInterstitial ad) {
                 super.onLeftApplication(ad);
-                Log.d(TAG,"onLeftApplication");
+                Log.d(TAG, "onLeftApplication");
             }
 
             @Override
             public void onClicked(AdColonyInterstitial ad) {
                 super.onClicked(ad);
-                Log.d(TAG,"onClicked");
+                Log.d(TAG, "onClicked");
             }
         };
         AdColony.requestInterstitial(ZONE_ID, _listener, null);
@@ -93,7 +96,7 @@ public class Adcolony extends Advertising {
 
     @Override
     public void showAdv() {
-        Log.d(TAG,"showAdv");
+        Log.d(TAG, "showAdv");
         if (_ad != null) {
             _ad.show();
         }

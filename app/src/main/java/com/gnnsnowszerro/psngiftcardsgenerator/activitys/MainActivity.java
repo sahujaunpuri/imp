@@ -12,4 +12,5 @@ public class MainActivity extends ActivitySimple{
         return MainFragment.newInstance();
     }
 
+
 }

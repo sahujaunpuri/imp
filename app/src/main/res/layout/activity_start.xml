@@ -5,45 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:padding="@dimen/m_dimen"
     tools:context="com.gnnsnowszerro.psngiftcardsgenerator.activitys.StartActivity">
 
     <LinearLayout
-
+        android:layout_above="@+id/bottom_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:layout_margin="@dimen/m_dimen"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_dimen"
+            android:src="@drawable/icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_dimen"
             android:gravity="center"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_dimen"
             android:gravity="center"
-            android:text="Exchange coins for PLAYSTATION Promo Codes" />
+            android:text="@string/description"
+            android:textSize="20sp" />
 
         <Button
-            android:onClick="onClick"
             android:id="@+id/get_started"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_blue_background"
             android:gravity="center"
-            android:text="Get started" />
+            android:onClick="onClick"
+            android:padding="@dimen/s_dimen"
+            android:text="@string/get_started"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/bottom_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="This app &amp; the services are not associated, affiliated, endorsed or sponsored by PlayStation" />
+        android:gravity="center"
+        android:text="@string/start_bottom_text" />
 </RelativeLayout>
