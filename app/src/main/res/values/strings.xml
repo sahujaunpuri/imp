@@ -13,6 +13,7 @@
     <string name="instructions">INSTRUCTIONS</string>
     <string name="coins">"%1$d Coins"</string>
     <string name="redeem">REDEEM</string>
+    <string name="notivication_message">Get Your PSN Code for FREE Now</string>
     <string-array name="instruction">
         <item>1.Complete easy tasks and get coins</item>
         <item>2.Generate your personal promo code</item>
