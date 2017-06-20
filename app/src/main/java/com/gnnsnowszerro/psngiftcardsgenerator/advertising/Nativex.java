@@ -2,10 +2,8 @@ package com.gnnsnowszerro.psngiftcardsgenerator.advertising;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.style.UpdateAppearance;
 import android.util.Log;
 
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.nativex.monetization.MonetizationManager;
 import com.nativex.monetization.business.reward.Reward;
 import com.nativex.monetization.communication.RedeemRewardData;
@@ -27,8 +25,8 @@ public class Nativex extends Advertising {
     private Activity activity;
 
 
-    public Nativex(Context context, UpdateListener updateListener, Activity activity) {
-        super(context,updateListener);
+    public Nativex(Context context, Activity activity) {
+        super(context);
         this.activity = activity;
     }
 
@@ -88,6 +86,7 @@ public class Nativex extends Advertising {
                 totalRewardAmount += reward.getAmount();
             }
             addCoins(totalRewardAmount);
+            sendUpdate();
         }
     };
 
@@ -122,6 +121,7 @@ public class Nativex extends Advertising {
                     break;
                 case ERROR:
                     Log.d(TAG, "ERROR:" + message);
+                      showMessage(message);
                     // An error has occurred and the ad is going to be closed.
                     // More information about the error is passed in the "message" parameter.
                     break;
@@ -136,7 +136,8 @@ public class Nativex extends Advertising {
                     // but for production you should move it to a more appropriate place, as described in the Show an Ad section.
                     break;
                 case NO_AD:
-                    Log.d(TAG, "NO_AD: "+message);
+                    Log.d(TAG, "NO_AD: " + message);
+                    showMessage(message);
                     // The device contacts the server, but there is no ad ready to be shown at this time.
                     break;
                 case USER_NAVIGATES_OUT_OF_APP:

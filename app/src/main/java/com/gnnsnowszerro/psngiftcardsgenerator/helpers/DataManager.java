@@ -78,10 +78,10 @@ public class DataManager {
         addCoupon(new Coupon("25$ PS Gift Card", R.drawable.gift_card, 9900));
         addCoupon(new Coupon("10$ PS Gift Card", R.drawable.gift_card, 4000));
 
-        addEarn(new EarnItem(OFFER_TORO,"Quick offers",R.drawable.quick));
-        addEarn(new EarnItem(NATIVEX,"Pro tasks",R.drawable.pro));
-        addEarn(new EarnItem(ADXMI,"Daily offers",R.drawable.daily));
+        addEarn(new EarnItem(OFFER_TORO,"Quick Offers",R.drawable.quick));
+        addEarn(new EarnItem(NATIVEX,"Pro Tasks",R.drawable.pro));
+        addEarn(new EarnItem(ADXMI,"Daily Offers",R.drawable.daily));
         addEarn(new EarnItem(ADCOLONY,"Watch Video",R.drawable.video));
-        addEarn(new EarnItem(RATE_US,"Rate us",R.drawable.rate));
+        addEarn(new EarnItem(RATE_US,"Rate Us",R.drawable.rate));
     }
 }

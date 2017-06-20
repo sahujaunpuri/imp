@@ -1,5 +1,9 @@
 package com.gnnsnowszerro.psngiftcardsgenerator.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,24 +12,37 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.custom.CustomToolbar;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.PrefenceHelper;
 
 
-public class MainFragment extends Fragment implements UpdateListener {
+public class MainFragment extends Fragment {
 
+    public static final String ACTION_UPDATE = "action_update";
+
+    public static final String TAG = "MainFragment";
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
 
     private CustomToolbar toolbar;
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            toolbar.setCoinsText(String.valueOf(PrefenceHelper.getInstance(getContext()).loadCoins()));
+        }
+    };
+
+
+    private IntentFilter filter = new IntentFilter(ACTION_UPDATE);
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -39,6 +56,21 @@ public class MainFragment extends Fragment implements UpdateListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getContext().registerReceiver(receiver, filter);
+        toolbar.setCoinsText(String.valueOf(PrefenceHelper.getInstance(getContext()).loadCoins()));
+        Log.d(TAG,"onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().unregisterReceiver(receiver);
+        Log.d(TAG,"onPause");
     }
 
     @Override
@@ -65,10 +97,6 @@ public class MainFragment extends Fragment implements UpdateListener {
         return view;
     }
 
-    @Override
-    public void update() {
-        toolbar.setCoinsText(String.valueOf(PrefenceHelper.getInstance(getContext()).loadCoins()));
-    }
 
     public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 

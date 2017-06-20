@@ -8,7 +8,6 @@ import com.adcolony.sdk.AdColony;
 import com.adcolony.sdk.AdColonyInterstitial;
 import com.adcolony.sdk.AdColonyInterstitialListener;
 import com.adcolony.sdk.AdColonyZone;
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 
 /**
  * Created by mykola on 18.06.17.
@@ -21,8 +20,8 @@ public class Adcolony extends Advertising {
     public static final String ZONE_ID = "vzac61b40e83e8436c9e";
     private Activity activity;
 
-    public Adcolony(Context context, UpdateListener updateListener, Activity activity) {
-        super(context, updateListener);
+    public Adcolony(Context context, Activity activity) {
+        super(context);
         this.activity = activity;
     }
 
@@ -44,14 +43,14 @@ public class Adcolony extends Advertising {
             public void onClosed(AdColonyInterstitial ad) {
                 super.onClosed(ad);
                 addCoins(10);
-                if (updateListener != null)
-                    updateListener.update();
+                sendUpdate();
                 Log.d(TAG, "onClosed");
             }
 
             @Override
             public void onRequestNotFilled(AdColonyZone zone) {
                 super.onRequestNotFilled(zone);
+                showMessage("No allow content");
                 Log.d(TAG, "onRequestNotFilled");
             }
 

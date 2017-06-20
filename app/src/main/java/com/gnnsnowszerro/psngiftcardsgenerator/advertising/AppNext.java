@@ -11,7 +11,6 @@ import com.appnext.appnextsdk.API.AppnextAd;
 import com.appnext.appnextsdk.API.AppnextAdRequest;
 import com.appnext.base.Appnext;
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,8 +28,8 @@ public class AppNext extends Advertising {
     private View view;
     public static final String PLACEMENT_ID = "71e1876b-4594-4065-8d8a-9739c2e519de";
 
-    public AppNext(Context context, UpdateListener updateListener, View view) {
-        super(context,updateListener);
+    public AppNext(Context context, View view) {
+        super(context);
         this.context = context;
         this.view = view;
     }
@@ -51,14 +50,17 @@ public class AppNext extends Advertising {
             public void onAdsLoaded(ArrayList<AppnextAd> arrayList) {
                 if (arrayList.isEmpty())
                     return;
+
                 int position = new Random().nextInt(arrayList.size());
                 ad = arrayList.get(position);
 
                 view.findViewById(R.id.banner_view).setVisibility(View.VISIBLE);
-                Picasso.with(context).load(ad.getImageURL()).into((ImageView) view.findViewById(R.id.icon));
+
                 ((TextView) view.findViewById(R.id.title)).setText(ad.getAdTitle());
                 ((TextView) view.findViewById(R.id.rating)).setText(ad.getStoreRating());
                 ((Button) view.findViewById(R.id.install)).setText(ad.getButtonText());
+
+                Picasso.with(context).load(ad.getImageURL()).into((ImageView) view.findViewById(R.id.icon));
 
                 view.findViewById(R.id.click).setOnClickListener(new View.OnClickListener() {
                     @Override

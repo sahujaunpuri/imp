@@ -12,13 +12,12 @@ public class MainActivity extends ActivitySimple{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ShowNotification.setServiceAlarm(this,true);
+        ShowNotification.setServiceAlarm(this);
     }
 
     @Override
     public Fragment setFragment() {
         return MainFragment.newInstance();
     }
-
 
 }

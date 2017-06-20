@@ -3,8 +3,6 @@ package com.gnnsnowszerro.psngiftcardsgenerator.advertising;
 import android.content.Context;
 import android.util.Log;
 
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
-
 import net.adxmi.android.AdManager;
 import net.adxmi.android.os.EarnPointsOrderInfo;
 import net.adxmi.android.os.EarnPointsOrderList;
@@ -25,8 +23,8 @@ public class Adxmi extends Advertising implements
 
     private Context context;
 
-    public Adxmi(Context context, UpdateListener updateListener) {
-        super(context,updateListener);
+    public Adxmi(Context context) {
+        super(context);
 
         this.context = context;
     }
@@ -68,7 +66,7 @@ public class Adxmi extends Advertising implements
         }
 
         addCoins(add);
-
+        sendUpdate();
     }
 
 

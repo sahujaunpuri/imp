@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gnnsnowszerro.psngiftcardsgenerator.R;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Adcolony;
@@ -18,7 +19,6 @@ import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Adxmi;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.Nativex;
 import com.gnnsnowszerro.psngiftcardsgenerator.advertising.OfferToro;
 import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.EarnCoinsListener;
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager;
 import com.gnnsnowszerro.psngiftcardsgenerator.models.EarnItem;
 
@@ -31,7 +31,7 @@ import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.OFFER_
 import static com.gnnsnowszerro.psngiftcardsgenerator.helpers.DataManager.RATE_US;
 
 
-public class EarnListFragment extends Fragment implements EarnCoinsListener, UpdateListener {
+public class EarnListFragment extends Fragment implements EarnCoinsListener{
 
     private Advertising advertising;
 
@@ -48,7 +48,7 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener, Upd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_earn_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -66,19 +66,20 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener, Upd
     public void earnCoins(int type) {
         switch (type) {
             case OFFER_TORO:
-                advertising = new OfferToro(getContext(), this,getActivity());
+                advertising = new OfferToro(getContext(), getActivity());
                 break;
             case NATIVEX:
-                advertising = new Nativex(getContext(), this, getActivity());
+                advertising = new Nativex(getContext(), getActivity());
                 break;
             case ADXMI:
-                advertising = new Adxmi(getContext(), this);
+                advertising = new Adxmi(getContext());
                 break;
             case ADCOLONY:
-                advertising = new Adcolony(getContext(), this, getActivity());
+                advertising = new Adcolony(getContext(),  getActivity());
                 break;
             case RATE_US:
                 advertising = null;
+                Toast.makeText(getContext(), R.string.not_allow, Toast.LENGTH_SHORT).show();
                 break;
         }
         if (advertising != null) {
@@ -89,12 +90,6 @@ public class EarnListFragment extends Fragment implements EarnCoinsListener, Upd
 
     }
 
-    @Override
-    public void update() {
-        if (getParentFragment() != null && getParentFragment() instanceof UpdateListener) {
-            ((UpdateListener) getParentFragment()).update();
-        }
-    }
 
 
     public class EarnListRecyclerViewAdapter extends RecyclerView.Adapter<EarnListRecyclerViewAdapter.ViewHolder> {

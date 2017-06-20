@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
-import com.gnnsnowszerro.psngiftcardsgenerator.callbacks.UpdateListener;
 import com.offertoro.sdk.OTOfferWallSettings;
 import com.offertoro.sdk.interfaces.OfferWallListener;
 import com.offertoro.sdk.sdk.OffersInit;
@@ -22,14 +21,13 @@ public class OfferToro extends Advertising {
     public static final String TAG = "OfferToro";
 
 
-
     private Activity activity;
 
 
     private OffersInit offersInit;
 
-    public OfferToro(Context context, UpdateListener updateListener,Activity activity) {
-        super(context,updateListener);
+    public OfferToro(Context context, Activity activity) {
+        super(context);
         this.activity = activity;
 
     }
@@ -50,6 +48,7 @@ public class OfferToro extends Advertising {
             @Override
             public void onOTOfferWallInitFail(String s) {
                 Log.d(TAG, "oonOTOfferWallInitFail. Error:" + s);
+                showMessage(s);
             }
 
             @Override
@@ -60,6 +59,7 @@ public class OfferToro extends Advertising {
             @Override
             public void onOTOfferWallCredited(double v, double v1) {
                 addCoins((int) v);
+                sendUpdate();
                 Log.d(TAG, "onOTOfferWallCredited. v =  " + v + ", v1 = " + v1);
             }
 

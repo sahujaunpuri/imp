@@ -21,11 +21,12 @@
 
 
         <RelativeLayout
-            android:layout_width="320dp"
-            android:layout_height="50dp">
+            android:id="@+id/banner_view"
+            android:layout_width="@dimen/baner_width"
+            android:layout_height="@dimen/baner_height"
+            android:visibility="invisible">
 
             <LinearLayout
-                android:id="@+id/banner_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"

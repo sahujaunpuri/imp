@@ -39,7 +39,7 @@ public class CouponsListFragment extends Fragment implements ShowCouponListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_coupons_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
